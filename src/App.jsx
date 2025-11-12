@@ -14,7 +14,6 @@ import {
   ExternalLink,
 } from 'lucide-react';
 
-// ---- Config (edit these) ----------------------------------------------------
 const PROFILE = {
   name: 'Bonhomie',
   role: 'Full‑Stack Web & Mobile Developer',
@@ -22,7 +21,8 @@ const PROFILE = {
     'I design, build, and ship fast, scalable apps with delightful UX — React, Node, React Native, and AI integrations.',
   location: 'Lagos, Nigeria',
   email: 'adeyemibabatundejoseph@gmail.com',
-  resumeUrl: 'https://drive.google.com/file/d/1vbsz0UBUhZ1UPkqFqK5sW6npGzJqb03c/view?usp=sharing',
+  resumeUrl:
+    'https://drive.google.com/file/d/1vbsz0UBUhZ1UPkqFqK5sW6npGzJqb03c/view?usp=sharing',
   socials: {
     github: 'https://github.com/bonhomie95',
     linkedin: 'https://www.linkedin.com/in/adeyemi-joseph-770a55244',
@@ -57,32 +57,30 @@ const PROJECTS = [
     description:
       'Crypto‑reward trivia game with streaks, live leaderboards, PIN‑secured wallet, and animated quiz UX.',
     links: {
-      live: '#',
-      github: '#',
+      live: 'https://github.com/Bonhomie95/quizmintt',
+      github: 'https://github.com/Bonhomie95/quizmintt',
     },
     image:
       'https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=1200&auto=format&fit=crop',
   },
   {
-    title: 'Property Wey International',
+    title: 'Modern Bank App',
     tag: 'React • Node • Cloudinary',
     description:
       'Modern real‑estate marketplace with verified listings, quality checks, Cloudinary pipeline, and maps.',
     links: {
-      live: 'https://bankmodernapp.vercel.app/s',
+      live: 'https://bankmodernapp.vercel.app',
       github: 'https://github.com/Bonhomie95/bankmodernapp',
     },
-    image:
-      'https://i.imgur.com/QuyznnB.jpeg',
+    image: 'https://i.imgur.com/QuyznnB.jpeg',
   },
   {
-    title: 'Vanta (ResumeGPT)',
-    tag: 'React • Node • AI • LangChain',
-    description:
-      'AI‑powered resume optimizer and job matcher with interview coach and offer negotiation tools.',
+    title: 'Referall Earning Web App',
+    tag: 'React • Node • Paystack',
+    description: 'Modern referall program to connect people and earn.',
     links: {
-      live: '#',
-      github: '#',
+      live: 'https://github.com/Bonhomie95/referral',
+      github: 'https://github.com/Bonhomie95/referral',
     },
     image:
       'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?q=80&w=1200&auto=format&fit=crop',
@@ -148,6 +146,44 @@ const zoom = (d = 0) => ({
 export default function Portfolio() {
   const active = useScrollActive();
   const year = useMemo(() => new Date().getFullYear(), []);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: '',
+  });
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState('');
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError('');
+
+    try {
+      const res = await fetch('https://formspree.io/f/mzzzgdbp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      if (res.ok) {
+        setSuccess(true);
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        setError('Failed to send message. Try again later.');
+      }
+    } catch (err) {
+      setError('Network error. Please try again.');
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-neutral-950 text-neutral-100 selection:bg-cyan-500/30 selection:text-cyan-200">
@@ -375,36 +411,69 @@ export default function Portfolio() {
 
       {/* Contact */}
       <section id="contact" className="mx-auto max-w-6xl px-4 py-16">
-        <motion.h2 {...fade(0)} className="text-2xl font-semibold">
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-2xl font-semibold text-cyan-400"
+        >
           Let’s build something great
         </motion.h2>
-        <motion.p {...fade(0.06)} className="mt-2 max-w-2xl text-neutral-300">
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="mt-2 max-w-2xl text-neutral-300"
+        >
           Briefly describe your idea, timeline, and budget. I typically reply
           within 24 hours.
         </motion.p>
-        <motion.div {...fade(0.12)} className="mt-6 grid gap-4 sm:grid-cols-2">
+
+        <motion.form
+          onSubmit={handleSubmit}
+          className="mt-6 grid gap-4 sm:grid-cols-2"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
           <input
-            className="rounded-xl border border-neutral-800 bg-neutral-900 px-4 py-3 outline-none ring-cyan-600/30 focus:border-cyan-700"
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
             placeholder="Your name"
+            className="rounded-xl border border-neutral-800 bg-neutral-900 px-4 py-3 outline-none focus:border-cyan-700 focus:ring-cyan-600/30"
+            required
           />
           <input
-            className="rounded-xl border border-neutral-800 bg-neutral-900 px-4 py-3 outline-none ring-cyan-600/30 focus:border-cyan-700"
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
             placeholder="Email or phone"
+            className="rounded-xl border border-neutral-800 bg-neutral-900 px-4 py-3 outline-none focus:border-cyan-700 focus:ring-cyan-600/30"
+            required
           />
           <textarea
+            name="message"
             rows={4}
-            className="sm:col-span-2 rounded-xl border border-neutral-800 bg-neutral-900 px-4 py-3 outline-none ring-cyan-600/30 focus:border-cyan-700"
+            value={formData.message}
+            onChange={handleChange}
             placeholder="Project summary"
+            className="sm:col-span-2 rounded-xl border border-neutral-800 bg-neutral-900 px-4 py-3 outline-none focus:border-cyan-700 focus:ring-cyan-600/30"
+            required
           />
           <div className="sm:col-span-2 flex items-center gap-3">
-            <a
-              href={`mailto:${PROFILE.email}`}
-              className="inline-flex items-center gap-2 rounded-xl bg-cyan-600 px-4 py-2 font-semibold text-white shadow-lg shadow-cyan-600/20 transition hover:bg-cyan-500"
+            <button
+              type="submit"
+              disabled={loading}
+              className="inline-flex items-center gap-2 rounded-xl bg-cyan-600 px-4 py-2 font-semibold text-white shadow-lg shadow-cyan-600/20 transition hover:bg-cyan-500 disabled:opacity-50"
             >
-              <Mail className="h-4 w-4" /> Send Email
-            </a>
+              <Mail className="h-4 w-4" />{' '}
+              {loading ? 'Sending...' : 'Send Message'}
+            </button>
             <a
-              href={PROFILE.socials.github}
+              href="https://github.com/Bonhomie95"
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-2 rounded-xl border border-neutral-800 bg-neutral-900 px-4 py-2 text-neutral-200 hover:border-cyan-700"
@@ -412,7 +481,15 @@ export default function Portfolio() {
               <Github className="h-4 w-4" /> GitHub
             </a>
           </div>
-        </motion.div>
+          {success && (
+            <p className="sm:col-span-2 mt-4 text-green-400">
+              ✅ Message sent successfully!
+            </p>
+          )}
+          {error && (
+            <p className="sm:col-span-2 mt-4 text-red-400">⚠️ {error}</p>
+          )}
+        </motion.form>
       </section>
 
       {/* Footer */}
