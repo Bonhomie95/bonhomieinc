@@ -22,7 +22,7 @@ const PROFILE = {
     'I design, build, and ship fast, scalable apps with delightful UX — React, Node, React Native, and AI integrations.',
   location: 'Lagos, Nigeria',
   email: 'adeyemibabatundejoseph@gmail.com',
-  resumeUrl: 'https://bonhomie.dev/resume.pdf',
+  resumeUrl: 'https://drive.google.com/file/d/1vbsz0UBUhZ1UPkqFqK5sW6npGzJqb03c/view?usp=sharing',
   socials: {
     github: 'https://github.com/bonhomie95',
     linkedin: 'https://www.linkedin.com/in/adeyemi-joseph-770a55244',
@@ -69,11 +69,11 @@ const PROJECTS = [
     description:
       'Modern real‑estate marketplace with verified listings, quality checks, Cloudinary pipeline, and maps.',
     links: {
-      live: '#',
-      github: '#',
+      live: 'https://bankmodernapp.vercel.app/s',
+      github: 'https://github.com/Bonhomie95/bankmodernapp',
     },
     image:
-      'https://images.unsplash.com/photo-1502005229762-cf1b2da7c52f?q=80&w=1200&auto=format&fit=crop',
+      'https://i.imgur.com/QuyznnB.jpeg',
   },
   {
     title: 'Vanta (ResumeGPT)',
