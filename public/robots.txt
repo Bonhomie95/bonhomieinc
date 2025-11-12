@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://bonhomieinc.vercel.app/sitemap.xml
