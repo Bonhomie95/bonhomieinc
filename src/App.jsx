@@ -15,18 +15,18 @@ import {
 } from 'lucide-react';
 
 const PROFILE = {
-  name: 'Bonhomie',
+  name: 'Bonhomie Inc',
   role: 'Full‑Stack Web & Mobile Developer',
   blurb:
     'I design, build, and ship fast, scalable apps with delightful UX — React, Node, React Native, and AI integrations.',
   location: 'Lagos, Nigeria',
-  email: 'adeyemibabatundejoseph@gmail.com',
+  email: 'contact@bonhomieinc.dev',
   resumeUrl:
     'https://drive.google.com/file/d/1vbsz0UBUhZ1UPkqFqK5sW6npGzJqb03c/view?usp=sharing',
   socials: {
     github: 'https://github.com/bonhomie95',
     linkedin: 'https://www.linkedin.com/in/adeyemi-joseph-770a55244',
-    email: 'mailto:adeyemibabatundejoseph@gmail.com',
+    email: 'mailto:contact@bonhomieinc.dev',
   },
 };
 
